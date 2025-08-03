@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>{{name}},{{message.age}},{{message.address}}</h1>
+  </div>
+  <script type="text/javascript" >
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+    const vm = new Vue({
+      // el: '#root', //第一种写法
+      // data: {
+      //   name: '尚硅谷',
+      //   message: {
+      //     age: 18,
+      //     address: '北京'
+      //   }
+      // } 第一种写法
+      data() {
+        return {
+          name: '尚硅谷',
+          message: {
+            age: 20,
+            address: '郑州'
+          }
+        }
+      } //第二种写法
+    })
+    vm.$mount('#root') //第二种写法
+  </script>
+</body>
+</html>
