@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="../js/vue.js"></script>
+    <!-- 
+        三个注意点
+        第一：组件名称
+            1.一个单词组成
+                第一种写法(首字母小写)：school
+                第二种写法(首字母大写)：School
+            2.多个单词组成
+                第一种写法(kebab-case命名)：my-school
+                第二种写法(CamelCase命名)：MySchool(需要Vue脚手架支持)
+            备注：组件名称要避免使用HTML已有的标签，例如h2
+                可以使用name设定开发者工具中显示的组件名称
+        第二：组件标签
+            第一种写法：<school></school>
+            第二种写法：<school/>
+            注意：使用第二种写法时，如果不在脚手架内书写，会导致后续组件无法渲染。
+        第三：定义组件时的简写
+            const school = Vue.extend(options) 可以简写为 const school = options
+    
+    -->
+</head>
+<body>
+    <div id="root">
+        <h2>欢迎学习{{project}}</h2>
+        <!-- 第三步：使用组件 -->
+        <School></School>
+        <hr />
+        <Student></Student>
+        <hr />
+        <Hello></Hello>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    const School = Vue.extend({
+        template: `
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>地址：{{address}}</h2>
+                <button @click="showSchoolName">点我提示学校名</button>
+            </div>
+        `,
+        data(){
+            return {
+                schoolName: '尚硅谷',
+                address: '北京-昌平'
+            }
+        },
+        methods: {
+            showSchoolName(){
+                alert(this.schoolName);
+            }
+        }
+    });
+    // 第一步：定义组件
+    const Student = {
+        template: `
+            <div>
+                <h2>学生名称：{{studentName}}</h2>
+                <h2>年龄：{{age}}</h2>
+            </div>
+        `,
+        data(){
+            return {
+                studentName: '小张',
+                age: 23
+            }
+        }
+    };
+    const Hello = {
+        template: `
+            <h2>你好啊：{{personName}}</h2>
+        `,
+        data(){
+            return {
+                personName: 'Tom',
+            }
+        }
+    };
+    // 全局注册组件
+    Vue.component('Hello',Hello);
+    new Vue({
+        el: '#root',
+        data: {
+            project: 'Vue',
+        },
+        components: {
+            // 第二步注册组件
+            // 局部注册组件
+            School,
+            Student,
+            Hello,
+        }
+    })
+
+</script>
+</html>

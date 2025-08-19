@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="../js/vue.js"></script>
+    <!---->
+</head>
+<body>
+    <div id="root">
+        <App />
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+    // 第一步：定义组件
+    const Student = {
+        template: `
+            <div>
+                <h2>学生名称：{{studentName}}</h2>
+                <h2>年龄：{{age}}</h2>
+            </div>
+        `,
+        data(){
+            return {
+                studentName: '小张',
+                age: 23
+            }
+        }
+    };
+    const School = Vue.extend({
+        template: `
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>地址：{{address}}</h2>
+                <button @click="showSchoolName">点我提示学校名</button>
+                <hr />
+                <Student></Student>
+            </div>
+        `,
+        data(){
+            return {
+                schoolName: '尚硅谷',
+                address: '北京-昌平'
+            }
+        },
+        methods: {
+            showSchoolName(){
+                alert(this.schoolName);
+            }
+        },
+        components: {
+            Student
+        }
+    });
+    
+    const Hello = {
+        template: `
+            <h2>你好啊：{{personName}}</h2>
+        `,
+        data(){
+            return {
+                personName: 'Tom',
+            }
+        }
+    };
+    const App = Vue.extend({
+        template: `
+            <div>
+                <Hello></Hello>
+                <School></School>
+            </div>
+        `,
+        components: {
+            Hello,
+            School
+        }
+    })
+    // 第二步：注册组件
+    new Vue({
+        el: '#root',
+        components: {
+            App
+        }
+    })
+
+</script>
+</html>
