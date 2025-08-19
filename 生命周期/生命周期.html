@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+
+  </div>
+
+  
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+    new Vue({
+      el: '#root',
+      data: {
+        name: '尚硅谷',
+        message: {
+          age: 18,
+          address: '北京'
+        }
+      },
+      // 生命周期钩子函数。生命周期实质是vm的周期
+      // Vue实例的生命周期分为以下几个阶段：
+      // 1. beforeCreate：实例vm(数据的检测、数据的代理)被创建之前调用
+      // 2. created：实例vm被创建之后调用
+      // 3. beforeMount：挂载开始之前调用
+      // 4. mounted：挂载完成之后调用
+      // 5. beforeUpdate：数据更新之前调用
+      // 6. updated：数据更新之后调用
+      // 7. beforeDestroy：实例销毁之前调用
+      // 8. destroyed：实例销毁之后调用
+      beforecreate() {
+        console.log('beforeCreate生命周期钩子函数被调用');
+      },
+      created() {
+        console.log('created生命周期钩子函数被调用');
+      },
+      beforemount() {
+        console.log('beforeMount生命周期钩子函数被调用');
+      },
+      mounted() {
+        console.log('mounted生命周期钩子函数被调用');
+      },
+      // 当数据发生变化时，Vue会重新渲染视图
+      // 这个钩子函数会在视图更新之前被调用
+      // 你可以在这里执行一些操作，比如获取更新前的DOM状态
+      // 注意：在这个钩子函数中，不能访问更新后的DOM状态，因为
+      // 视图还没有更新完成
+      beforeupdate() {
+        console.log('beforeUpdate生命周期钩子函数被调用');
+      },
+      // 这个钩子函数会在视图更新完成后被调用
+      // 你可以在这里执行一些操作，比如获取更新后的DOM状态
+      // 注意：在这个钩子函数中，视图已经更新完成，你可以
+      // 安全地访问更新后的DOM状态
+      // 但是请注意，这个钩子函数可能会被多次调用
+      // 例如，当数据发生变化时，Vue会重新渲染视图
+      // 这个钩子函数会被调用多次
+      // 你可以在这里执行一些操作，比如获取更新后的DOM状态
+      updated() {
+        console.log('updated生命周期钩子函数被调用');
+      },
+      destroyed() {
+        console.log('destroyed生命周期钩子函数被调用');
+      }
+    })
+  </script>
+</body>
+</html>
